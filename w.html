@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HOPHIO · On my way</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Someone is on their way and shared the ride with you. See when they get there.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HOPHIO">
+<meta property="og:title" content="On my way">
+<meta property="og:description" content="See which tram or bus they are on and when they get there.">
+<meta property="og:image" content="https://hophioapp.github.io/media/og/ride.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="media/apps/hophio.png">
+<link rel="apple-touch-icon" href="media/apps/hophio.png">
+<style>
+  /* "On my way": a shared ride, as the trip card in HOPHIO shows it — the line's badge with
+     the rider's face, where they get off and when they are there. Light or dark like the phone. */
+  :root { color-scheme: light dark; --bg:#f2f2f7; --card:#fff; --ink:#000; --sub:#6e6e73; --fill:rgba(120,120,128,.12); --sep:rgba(60,60,67,.18);
+          --tram:#fd5f1d; --trolley:#0263d6; --bus:#00e2b4; --busInk:#052921; --county:#8b5cf6; --night:#2443c4; --train:#fd5f1d; --accent:#0a84ff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#000; --card:#1c1c1e; --ink:#fff; --sub:#9c9ca2; --fill:rgba(120,120,128,.24); --sep:rgba(84,84,88,.6); } }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100svh; background:var(--bg); color:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center;
+         font:17px/1.35 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; padding:28px 18px calc(28px + env(safe-area-inset-bottom)); -webkit-font-smoothing:antialiased; }
+  .card { width:100%; max-width:400px; background:var(--card); border-radius:26px; padding:22px 22px 20px; box-shadow:0 20px 50px -30px rgba(0,0,0,.35); }
+  .who { font-size:15px; font-weight:600; color:var(--sub); margin:0 0 6px; }
+  h1 { font-size:28px; line-height:1.12; letter-spacing:-.02em; margin:0 0 18px; font-weight:700; }
+  .ride { display:flex; align-items:center; gap:12px; padding:14px; border-radius:18px; background:var(--fill); }
+  .badge { display:inline-flex; align-items:center; gap:4px; height:28px; min-width:40px; padding:0 9px 0 5px; border-radius:14px; font-weight:700; font-size:16px; flex:none; }
+  .badge svg { width:15px; height:15px; margin:0 1px 0 2px; }
+  .ride .t { flex:1; min-width:0; }
+  .ride .t b { display:block; font-weight:600; font-size:17px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ride .t span { color:var(--sub); font-size:15px; }
+  .times { display:grid; grid-template-columns:1fr 1fr; margin-top:14px; border-top:.5px solid var(--sep); }
+  .times div { padding:14px 2px 2px; }
+  .times div + div { border-left:.5px solid var(--sep); padding-left:16px; }
+  .times small { display:block; color:var(--sub); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.02em; }
+  .times strong { font-size:28px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .times em { display:block; font-style:normal; color:var(--sub); font-size:15px; }
+  .btn { display:block; width:100%; max-width:400px; margin-top:12px; padding:15px; border-radius:999px; text-align:center; font-weight:600; text-decoration:none; font-size:17px; }
+  .primary { background:var(--tram); color:#fff; margin-top:18px; }
+  .secondary { background:var(--card); color:var(--ink); }
+  .note { max-width:400px; color:var(--sub); font-size:13px; text-align:center; margin:16px 0 0; }
+  .note a { color:inherit; }
+  .done .times strong { color:var(--sub); }
+</style>
+</head>
+<body>
+<main class="card" id="card">
+  <p class="who" id="who"></p>
+  <h1 id="title"></h1>
+  <div class="ride"><span class="badge" id="badge"></span><div class="t"><b id="off"></b><span id="offAt"></span></div></div>
+  <div class="times">
+    <div><small id="lOff"></small><strong id="tOff">–</strong></div>
+    <div><small id="lThere"></small><strong id="tThere">–</strong><em id="inMin"></em></div>
+  </div>
+</main>
+<a class="btn primary" id="open" href="#"></a>
+<a class="btn secondary" id="get" href="./"></a>
+<p class="note" id="note"></p>
+<script>
+  // w.html?l=4&m=tram&s=Viru&t=<epoch get off>&to=Estonia&a=<epoch there>&trip=…&date=…&stop=…
+  // (trip/date/stop hand the same run over to the app: hophio://ride?…)
+  var q = new URLSearchParams(location.search);
+  var L = ["et", "en", "ru"], nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+  var lang = L.indexOf(q.get("lang")) >= 0 ? q.get("lang") : (L.indexOf(nav) >= 0 ? nav : "en");
+  var T = {
+    en: { who: "On my way", to: "To %", ride: "On my way", off: "Getting off at %", offAt: "at %", lOff: "Gets off", lThere: "There at", min: "in % min", now: "now", arrived: "Should be there by now",
+          open: "Watch it live in HOPHIO", get: "Get HOPHIO", note: "No location was shared: HOPHIO shows the tram or bus itself, from Tallinn's public live data.",
+          modes: { tram: "tram", trolley: "trolleybus", bus: "bus", county: "county bus", night: "night bus", train: "train" } },
+    et: { who: "Olen teel", to: "Sihtkoht: %", ride: "Olen teel", off: "Väljub peatuses %", offAt: "kell %", lOff: "Väljub", lThere: "Kohal", min: "% min pärast", now: "kohe", arrived: "Peaks juba kohal olema",
+          open: "Vaata elavalt HOPHIOs", get: "Laadi HOPHIO", note: "Asukohta ei jagatud: HOPHIO näitab trammi või bussi ennast, Tallinna avalikest reaalajaandmetest.",
+          modes: { tram: "tramm", trolley: "troll", bus: "buss", county: "maakonnabuss", night: "öine buss", train: "rong" } },
+    ru: { who: "Я в пути", to: "Еду в %", ride: "Я в пути", off: "Выхожу на %", offAt: "в %", lOff: "Выходит", lThere: "Будет в", min: "через % мин", now: "сейчас", arrived: "Уже должен быть на месте",
+          open: "Смотреть вживую в HOPHIO", get: "Скачать HOPHIO", note: "Геопозицией никто не делился: HOPHIO показывает сам трамвай или автобус по открытым данным Таллина.",
+          modes: { tram: "трамвай", trolley: "троллейбус", bus: "автобус", county: "автобус Харьюмаа", night: "ночной автобус", train: "поезд" } },
+  }[lang];
+  var MODE = { tram: ["var(--tram)", "#fff"], trolley: ["var(--trolley)", "#fff"], bus: ["var(--bus)", "var(--busInk)"],
+               county: ["var(--county)", "#fff"], night: ["var(--night)", "#fff"], train: ["var(--train)", "#fff"] };
+  // The rider's face from the app (RiderSmiley): head, smile, two eyes.
+  var FACE = '<svg viewBox="0 0 1 1"><circle cx=".5" cy=".5" r=".45" fill="none" stroke="currentColor" stroke-width=".1"/><path d="M.29 .58Q.5 .82 .71 .58" fill="none" stroke="currentColor" stroke-width=".1" stroke-linecap="round"/><ellipse class="eyeW" cx=".36" cy=".39" rx=".075" ry=".075" fill="currentColor"/><ellipse cx=".64" cy=".39" rx=".075" ry=".075" fill="currentColor"/></svg>';
+  var f = function (s, v) { return s.replace("%", v); };
+  var $ = function (id) { return document.getElementById(id); };
+  var m = MODE[q.get("m")] ? q.get("m") : "tram", line = q.get("l") || "", stop = q.get("s") || "", to = q.get("to") || "";
+  var tOff = +q.get("t") * 1000 || 0, tThere = +q.get("a") * 1000 || tOff;
+  var clock = function (ms) { var d = new Date(ms); return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2); };
+  document.documentElement.lang = lang;
+  $("who").textContent = T.who;
+  $("title").textContent = to || T.ride;
+  var b = $("badge"); b.style.background = MODE[m][0]; b.style.color = MODE[m][1]; b.innerHTML = FACE + line;
+  $("off").textContent = stop ? f(T.off, stop) : T.modes[m] + " " + line;
+  $("offAt").textContent = T.modes[m] + " " + line + (tOff ? " · " + f(T.offAt, clock(tOff)) : "");
+  $("lOff").textContent = T.lOff; $("lThere").textContent = T.lThere;
+  if (tOff) $("tOff").textContent = clock(tOff);
+  if (tThere) $("tThere").textContent = clock(tThere);
+  function tick() {
+    if (!tThere) return;
+    var min = Math.round((tThere - Date.now()) / 60000);
+    if (min < -1) { $("inMin").textContent = ""; $("card").classList.add("done"); $("who").textContent = T.arrived; return; }
+    $("inMin").textContent = min <= 0 ? T.now : f(T.min, min);
+  }
+  tick(); setInterval(tick, 20000);
+  var app = "hophio://ride?" + ["trip", "date", "stop"].filter(function (k) { return q.get(k); }).map(function (k) { return k + "=" + encodeURIComponent(q.get(k)); }).join("&");
+  $("open").textContent = T.open; $("open").href = app;
+  $("get").textContent = T.get; $("get").href = "./?lang=" + lang + "#apps";
+  $("note").textContent = T.note;
+  document.title = "HOPHIO · " + T.who;
+</script>
+<script>
+  // Visits (GoatCounter, no cookies): the same code as GC in index.html; empty = not counted.
+  var GC = "";
+  if (GC) { var sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js"; sc.dataset.goatcounter = "https://" + GC + ".goatcounter.com/count"; document.head.appendChild(sc); }
+</script>
+</body>
+</html>

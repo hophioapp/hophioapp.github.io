@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HOPHIO · Route</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="A way someone sent you: open it in HOPHIO, same way, same time.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HOPHIO">
+<meta property="og:title" content="A way for you">
+<meta property="og:description" content="Open it in HOPHIO: the same way, at the same time. Or see the place on a map.">
+<meta property="og:image" content="https://hophioapp.github.io/media/og/route.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="media/apps/hophio.png">
+<link rel="apple-touch-icon" href="media/apps/hophio.png">
+<style>
+  /* A shared way (from HOPHIO's "Share"): the place, where from and when, then open it in
+     the app (hophio://route?…) or in any maps app. Light or dark like the phone. */
+  :root { color-scheme: light dark; --bg:#f2f2f7; --card:#fff; --ink:#000; --sub:#6e6e73; --fill:rgba(120,120,128,.12); --sep:rgba(60,60,67,.18); --tram:#fd5f1d; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#000; --card:#1c1c1e; --ink:#fff; --sub:#9c9ca2; --fill:rgba(120,120,128,.24); --sep:rgba(84,84,88,.6); } }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100svh; background:var(--bg); color:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center;
+         font:17px/1.35 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; padding:28px 18px calc(28px + env(safe-area-inset-bottom)); -webkit-font-smoothing:antialiased; }
+  .card { width:100%; max-width:400px; background:var(--card); border-radius:26px; padding:22px; box-shadow:0 20px 50px -30px rgba(0,0,0,.35); }
+  .who { font-size:15px; font-weight:600; color:var(--sub); margin:0 0 6px; }
+  h1 { font-size:28px; line-height:1.12; letter-spacing:-.02em; margin:0 0 18px; font-weight:700; }
+  .rows { border-radius:18px; background:var(--fill); padding:2px 14px; }
+  .row { display:flex; align-items:center; gap:12px; padding:12px 0; }
+  .row + .row { border-top:.5px solid var(--sep); }
+  .dot { width:14px; height:14px; border-radius:50%; flex:none; }
+  .from { background:#0a84ff; box-shadow:0 0 0 3px rgba(10,132,255,.25); }
+  .pin { width:22px; height:28px; flex:none; margin:0 -4px; }
+  .row b { font-weight:600; } .row span { color:var(--sub); font-size:15px; display:block; }
+  .when { margin-top:14px; display:flex; align-items:baseline; gap:8px; }
+  .when small { color:var(--sub); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.02em; }
+  .when strong { font-size:28px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .btn { display:block; width:100%; max-width:400px; margin-top:12px; padding:15px; border-radius:999px; text-align:center; font-weight:600; text-decoration:none; font-size:17px; }
+  .primary { background:var(--tram); color:#fff; margin-top:18px; }
+  .secondary { background:var(--card); color:var(--ink); }
+  .get { color:var(--sub); font-size:15px; text-align:center; margin-top:16px; text-decoration:none; }
+</style>
+</head>
+<body>
+<main class="card">
+  <p class="who" id="who"></p>
+  <h1 id="title"></h1>
+  <div class="rows">
+    <div class="row"><span class="dot from"></span><div><b id="from"></b></div></div>
+    <div class="row"><svg class="pin" viewBox="0 0 40 52"><path d="M20 51C17 45 7 38 4 30A18 18 0 1 1 36 30C33 38 23 45 20 51Z" fill="#ffcc00"/><circle cx="20" cy="18" r="5" fill="#000"/><path d="M20 22v9" stroke="#000" stroke-width="3" stroke-linecap="round"/></svg><div><b id="to"></b><span id="toSub"></span></div></div>
+  </div>
+  <div class="when" id="whenBox" hidden><small id="lLeave"></small><strong id="leave"></strong></div>
+</main>
+<a class="btn primary" id="app" href="#"></a>
+<a class="btn secondary" id="maps" href="#"></a>
+<a class="get" id="get" href="./"></a>
+<script>
+  // r.html?to=lat,lon&toName=…&from=lat,lon&fromName=…&at=<epoch> (HOPHIO's shared way)
+  var q = new URLSearchParams(location.search);
+  var L = ["et", "en", "ru"], nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+  var lang = L.indexOf(q.get("lang")) >= 0 ? q.get("lang") : (L.indexOf(nav) >= 0 ? nav : "en");
+  var T = {
+    en: { who: "A way for you", place: "The place", fromHere: "From where you are", leave: "Leave at", app: "Open in HOPHIO", maps: "Show on the map", get: "No HOPHIO yet? Get it" },
+    et: { who: "Teekond sulle", place: "Koht", fromHere: "Sinu asukohast", leave: "Välju kell", app: "Ava HOPHIOs", maps: "Näita kaardil", get: "HOPHIO puudub? Laadi alla" },
+    ru: { who: "Маршрут для тебя", place: "Место", fromHere: "Откуда ты сейчас", leave: "Выйти в", app: "Открыть в HOPHIO", maps: "Показать на карте", get: "Нет HOPHIO? Скачать" },
+  }[lang];
+  var $ = function (id) { return document.getElementById(id); };
+  var to = q.get("to") || "", name = q.get("toName") || T.place, from = q.get("fromName") || T.fromHere, at = +q.get("at") * 1000 || 0;
+  document.documentElement.lang = lang;
+  $("who").textContent = T.who; $("title").textContent = name;
+  $("from").textContent = from; $("to").textContent = name; 
+  if (at > Date.now()) { var d = new Date(at); $("whenBox").hidden = false; $("lLeave").textContent = T.leave;
+    $("leave").textContent = ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2); }
+  var keep = new URLSearchParams(q); keep.delete("lang");
+  $("app").textContent = T.app; $("app").href = "hophio://route?" + keep.toString();
+  $("maps").textContent = T.maps; $("maps").href = "https://maps.apple.com/?daddr=" + encodeURIComponent(to) + "&dirflg=r";
+  $("get").textContent = T.get; $("get").href = "./?lang=" + lang + "#apps";
+  document.title = "HOPHIO · " + name;
+</script>
+<script>
+  // Visits (GoatCounter, no cookies): the same code as GC in index.html; empty = not counted.
+  var GC = "";
+  if (GC) { var sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js"; sc.dataset.goatcounter = "https://" + GC + ".goatcounter.com/count"; document.head.appendChild(sc); }
+</script>
+</body>
+</html>
