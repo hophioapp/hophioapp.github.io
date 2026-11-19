@@ -2,6 +2,17 @@
   "version": 1,
   "apps": [
     {
+      "id": "hophio",
+      "name": "HOPHIO",
+      "status": "dev",
+      "icon": "https://hophioapp.github.io/media/apps/hophio.png",
+      "about": {
+        "en": "Tallinn transport, live. In beta on iPhone.",
+        "et": "Tallinna ühistransport elavalt. Beetaversioon iPhone'ile.",
+        "ru": "Транспорт Таллина вживую. Бета-версия для iPhone."
+      }
+    },
+    {
       "id": "lyhio",
       "name": "Lyhio",
       "appStoreId": "6815561665",
@@ -48,7 +59,7 @@
     {
       "id": "racehio",
       "name": "Racehio",
-      "status": "soon",
+      "status": "review",
       "icon": "https://hophioapp.github.io/media/apps/racehio.png",
       "about": {
         "en": "Draw a car, it turns into 3D, and race it with friends.",

@@ -520,7 +520,7 @@ const STEPS = [
 const SHOTFIX = {"en-dark": {"btn": 55.7, "chip": 77.3}, "en-light": {"btn": 75.6, "chip": 77.5}, "et-dark": {"btn": 56.9, "chip": 72.5}, "et-light": {"btn": 83.9, "chip": 72.5}, "ru-dark": {"btn": 62.1, "chip": 78.7}, "ru-light": {"btn": 80.8, "chip": 78.8}};
 /* Frames to take from another set if one is broken (none now). */
 const SHOTMISS = {};
-const APPS = [
+let APPS = [
   { id: "hophio", name: "HOPHIO", url: "", status: "dev" },
   { id: "lyhio", name: "Lyhio", url: "https://apps.apple.com/ee/app/lyhio/id6815561665" },
   { id: "pevvela", name: "Pevvela", url: "https://apps.apple.com/app/id6801178052" },
@@ -1117,18 +1117,35 @@ function render() {
   $("plans").innerHTML = t.plans.map(([n, pr, per, items], i) => `<div class="plan rv${i ? " plus" : ""}"><div class="nm">${i ? `<img src="media/apps/hophio.png" alt="" width="30" height="30" style="border-radius:8px">` : ""}${n}</div>
       <div class="pr">${pr}${per ? `<small>${per}</small>` : ""}</div><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("");
   $("rows").innerHTML = t.rows.map(([h, p], i) => `<div class="row rv"><div><h3>${h}</h3><p>${p}</p></div>${rowVisual(i)}</div>`).join("");
+  renderApps(t);
+  observeReveal();
+}
+function renderApps(t) {
   $("appList").innerHTML = APPS.map((a) => {
-    const inner = `<img class="ico" src="media/apps/${a.id}.png" alt="${a.name}" width="112" height="112" loading="lazy"><h4>${a.name}</h4><p>${t.apps[a.id]}</p>`;
+    const inner = `<img class="ico" src="${a.icon || `media/apps/${a.id}.png`}" alt="${a.name}" width="112" height="112" loading="lazy"><h4>${a.name}</h4><p>${t.apps[a.id]}</p>`;
     return a.url ? `<a class="app rv" href="${a.url}" target="_blank" rel="noopener">${inner}<span class="store">${APPLE}${t.store}</span></a>`
                  : `<div class="app soon rv${a.status === "dev" ? " dev" : ""}">${inner}<span class="store soon">${a.status === "dev" ? '<span class="dot"></span>' + t.dev : APPLE + (a.status === "review" ? t.review : t.soon)}</span></div>`;
   }).join("");
-  observeReveal();
 }
 const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
 function observeReveal() { document.querySelectorAll(".rv:not(.in)").forEach((el) => rio.observe(el)); }
 
 $("year").textContent = new Date().getFullYear();
 render(); placeStory(); story();
+// The apps list lives in apps.json (the HOPHIO app reads the same file): one place to edit.
+// The list above is only the first paint and the fallback without the file.
+fetch("apps.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).then((d) => {
+  if (!d || !Array.isArray(d.apps) || !d.apps.length) return;
+  APPS = d.apps.map((a) => ({ id: a.id, name: a.name, icon: a.icon,
+    url: a.appStoreId ? `https://apps.apple.com/app/id${a.appStoreId}` : "", status: a.status }));
+  for (const l of Object.keys(T)) for (const a of d.apps) {
+    const txt = (a.about || {})[l] || (a.about || {}).en;
+    if (txt) T[l].apps[a.id] = txt;
+  }
+  renderApps(T[lang]);
+  // Already on screen: show the new cards at once (no second reveal animation).
+  document.querySelectorAll("#appList .rv").forEach((el) => el.classList.add("in"));
+}).catch(() => {});
 // Open at the top (a reload kept the old place and cut the title on phones).
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 if (!location.hash) scrollTo(0, 0);
