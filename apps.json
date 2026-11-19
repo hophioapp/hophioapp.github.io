@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "apps": [
+    {
+      "id": "lyhio",
+      "name": "Lyhio",
+      "appStoreId": "6815561665",
+      "icon": "https://hophioapp.github.io/media/apps/lyhio.png",
+      "about": {
+        "en": "Photo surprises: scratch off the layer to reveal the picture. Send it in iMessage.",
+        "et": "Fotoüllatused: kraabi kiht maha ja pilt tuleb välja. Saada iMessage'is.",
+        "ru": "Фото-сюрпризы: стираешь слой и открываешь снимок. Можно отправить в iMessage."
+      }
+    },
+    {
+      "id": "pevvela",
+      "name": "Pevvela",
+      "appStoreId": "6801178052",
+      "icon": "https://hophioapp.github.io/media/apps/pevvela.png",
+      "about": {
+        "en": "Music in sync on several devices nearby.",
+        "et": "Muusika sünkroonis mitmes lähedal olevas seadmes.",
+        "ru": "Музыка синхронно на нескольких устройствах рядом."
+      }
+    },
+    {
+      "id": "runhio",
+      "name": "Runhio",
+      "appStoreId": "6825453792",
+      "icon": "https://hophioapp.github.io/media/apps/runhio.png",
+      "about": {
+        "en": "Draw a runner and beat your friends.",
+        "et": "Joonista jooksja ja võida sõpru.",
+        "ru": "Нарисуй бегуна и обгони друзей."
+      }
+    },
+    {
+      "id": "stayhio",
+      "name": "Stayhio",
+      "appStoreId": "6819387575",
+      "icon": "https://hophioapp.github.io/media/apps/stayhio.png",
+      "about": {
+        "en": "A party game: whoever leaves the app first loses.",
+        "et": "Seltskonnamäng: kes esimesena rakendusest lahkub, kaotab.",
+        "ru": "Игра для компании: кто первым выйдет из приложения, тот проиграл."
+      }
+    },
+    {
+      "id": "racehio",
+      "name": "Racehio",
+      "status": "soon",
+      "icon": "https://hophioapp.github.io/media/apps/racehio.png",
+      "about": {
+        "en": "Draw a car, it turns into 3D, and race it with friends.",
+        "et": "Joonista auto, sellest saab 3D, ja võistle sõpradega.",
+        "ru": "Нарисуй машину, она станет 3D, и гоняй с друзьями."
+      }
+    }
+  ],
+  "social": []
+}
