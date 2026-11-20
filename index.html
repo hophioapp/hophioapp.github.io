@@ -1067,7 +1067,7 @@ setInterval(() => { const c = $("ridecap"); if (!c || reduce) return; c.classLis
 /* Visits: GoatCounter (no cookies, no personal data). GC is the site's code there, empty
    until the account exists, so nothing is counted yet. The owner's screen: tap the HOPHIO
    logo six times quickly. */
-const GC = "";
+const GC = "hophio";
 if (GC) { const sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js"; sc.dataset.goatcounter = `https://${GC}.goatcounter.com/count`; document.head.appendChild(sc); }
 let logoTaps = [];
 async function ownerScreen() {
