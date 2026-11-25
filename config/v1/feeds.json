@@ -5,7 +5,10 @@
       "url": "https://transport.tallinn.ee/data/gtfs.zip",
       "publisher": "Tallinna Linnavalitsus / Tallinna Linnatranspordi AS",
       "attribution": "Timetables: Tallinn City Government open data (transport.tallinn.ee)",
-      "cityOperatorNameHints": ["Tallinn", "TLT"],
+      "cityOperatorNameHints": [
+        "Tallinn",
+        "TLT"
+      ],
       "maxAgeDays": 1,
       "required": true
     },
@@ -23,7 +26,174 @@
       "attribution": "Train timetables: Estonian public transport register open data",
       "maxAgeDays": 7,
       "defaultEnabled": false,
+      "approximateMegabytes": 1.3,
+      "layer": "train"
+    },
+    {
+      "id": "tartu",
+      "url": "https://eu-gtfs.remix.com/tartu.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "City timetables: Estonian public transport register open data",
+      "cityOperatorNameHints": [
+        "*"
+      ],
+      "approximateMegabytes": 1.8
+    },
+    {
+      "id": "parnu",
+      "url": "https://eu-gtfs.remix.com/parnu.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "City timetables: Estonian public transport register open data",
+      "cityOperatorNameHints": [
+        "*"
+      ],
       "approximateMegabytes": 1.3
+    },
+    {
+      "id": "narva",
+      "url": "https://eu-gtfs.remix.com/narva.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "City timetables: Estonian public transport register open data",
+      "cityOperatorNameHints": [
+        "*"
+      ],
+      "approximateMegabytes": 0.7
+    },
+    {
+      "id": "kohtla_jarve",
+      "url": "https://eu-gtfs.remix.com/kohtla_jarve.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "City timetables: Estonian public transport register open data",
+      "cityOperatorNameHints": [
+        "*"
+      ],
+      "approximateMegabytes": 0.6
+    },
+    {
+      "id": "rakvere",
+      "url": "https://eu-gtfs.remix.com/rakvere.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "City timetables: Estonian public transport register open data",
+      "cityOperatorNameHints": [
+        "*"
+      ],
+      "approximateMegabytes": 0.1
+    },
+    {
+      "id": "tartumaa",
+      "url": "https://eu-gtfs.remix.com/tartumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 4.3
+    },
+    {
+      "id": "parnumaa",
+      "url": "https://eu-gtfs.remix.com/parnumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 3.8
+    },
+    {
+      "id": "ida_viru",
+      "url": "https://eu-gtfs.remix.com/ida_viru.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 3.6
+    },
+    {
+      "id": "laane_virumaa",
+      "url": "https://eu-gtfs.remix.com/laane_virumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.5
+    },
+    {
+      "id": "viljandimaa",
+      "url": "https://eu-gtfs.remix.com/viljandimaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 3.3
+    },
+    {
+      "id": "vorumaa",
+      "url": "https://eu-gtfs.remix.com/vorumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.7
+    },
+    {
+      "id": "polvamaa",
+      "url": "https://eu-gtfs.remix.com/polvamaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 3.1
+    },
+    {
+      "id": "valgamaa",
+      "url": "https://eu-gtfs.remix.com/valgamaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.4
+    },
+    {
+      "id": "jogevamaa",
+      "url": "https://eu-gtfs.remix.com/jogevamaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.6
+    },
+    {
+      "id": "jarvamaa",
+      "url": "https://eu-gtfs.remix.com/jarvamaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.6
+    },
+    {
+      "id": "raplamaa",
+      "url": "https://eu-gtfs.remix.com/raplamaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 1.7
+    },
+    {
+      "id": "saaremaa",
+      "url": "https://eu-gtfs.remix.com/saaremaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 2.3
+    },
+    {
+      "id": "hiiumaa",
+      "url": "https://eu-gtfs.remix.com/hiiumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 1.6
+    },
+    {
+      "id": "laanemaa",
+      "url": "https://eu-gtfs.remix.com/laanemaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "approximateMegabytes": 1.5
+    },
+    {
+      "id": "tslaevad",
+      "url": "https://eu-gtfs.remix.com/tslaevad.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium) · TS Laevad",
+      "attribution": "Ferry timetables: Estonian public transport register open data",
+      "defaultEnabled": false,
+      "approximateMegabytes": 0.4,
+      "layer": "ferry"
+    },
+    {
+      "id": "kaugliinid",
+      "url": "https://eu-gtfs.remix.com/kaugliinid.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "Intercity timetables: Estonian public transport register open data",
+      "defaultEnabled": false,
+      "approximateMegabytes": 6.0,
+      "layer": "intercity"
     }
   ]
 }

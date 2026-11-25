@@ -2,10 +2,384 @@
   "regions": [
     {
       "id": "tallinn",
-      "names": { "en": "Tallinn and Harju County", "ru": "Таллин и Харьюмаа", "et": "Tallinn ja Harjumaa" },
-      "center": { "lat": 59.437, "lon": 24.7536 },
-      "bounds": { "southWest": { "lat": 58.95, "lon": 23.4 }, "northEast": { "lat": 59.75, "lon": 26.1 } },
-      "feeds": ["tln", "harju"]
+      "names": {
+        "en": "Tallinn and Harju County",
+        "ru": "Таллин и Харьюмаа",
+        "et": "Tallinn ja Harjumaa"
+      },
+      "center": {
+        "lat": 59.437,
+        "lon": 24.754
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 59.064,
+          "lon": 24.069
+        },
+        "northEast": {
+          "lat": 59.588,
+          "lon": 25.675
+        }
+      },
+      "feeds": [
+        "tln",
+        "harju"
+      ]
+    },
+    {
+      "id": "tartu",
+      "names": {
+        "en": "Tartu and Tartu County",
+        "ru": "Тарту и Тартумаа",
+        "et": "Tartu ja Tartumaa"
+      },
+      "center": {
+        "lat": 58.378,
+        "lon": 26.729
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.078,
+          "lon": 25.958
+        },
+        "northEast": {
+          "lat": 58.762,
+          "lon": 27.457
+        }
+      },
+      "feeds": [
+        "tartu",
+        "tartumaa"
+      ]
+    },
+    {
+      "id": "parnu",
+      "names": {
+        "en": "Pärnu and Pärnu County",
+        "ru": "Пярну и Пярнумаа",
+        "et": "Pärnu ja Pärnumaa"
+      },
+      "center": {
+        "lat": 58.385,
+        "lon": 24.497
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 57.957,
+          "lon": 23.572
+        },
+        "northEast": {
+          "lat": 59.157,
+          "lon": 26.195
+        }
+      },
+      "feeds": [
+        "parnu",
+        "parnumaa"
+      ]
+    },
+    {
+      "id": "ida_viru",
+      "names": {
+        "en": "Ida-Viru County",
+        "ru": "Ида-Вирумаа",
+        "et": "Ida-Virumaa"
+      },
+      "center": {
+        "lat": 59.365,
+        "lon": 27.419
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.96,
+          "lon": 26.528
+        },
+        "northEast": {
+          "lat": 59.477,
+          "lon": 28.244
+        }
+      },
+      "feeds": [
+        "narva",
+        "kohtla_jarve",
+        "ida_viru"
+      ]
+    },
+    {
+      "id": "laane_viru",
+      "names": {
+        "en": "Rakvere and Lääne-Viru County",
+        "ru": "Раквере и Ляэне-Вирумаа",
+        "et": "Rakvere ja Lääne-Virumaa"
+      },
+      "center": {
+        "lat": 59.347,
+        "lon": 26.356
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.913,
+          "lon": 25.581
+        },
+        "northEast": {
+          "lat": 59.605,
+          "lon": 27.008
+        }
+      },
+      "feeds": [
+        "rakvere",
+        "laane_virumaa"
+      ]
+    },
+    {
+      "id": "viljandi",
+      "names": {
+        "en": "Viljandi County",
+        "ru": "Вильяндимаа",
+        "et": "Viljandimaa"
+      },
+      "center": {
+        "lat": 58.364,
+        "lon": 25.597
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.021,
+          "lon": 24.917
+        },
+        "northEast": {
+          "lat": 58.668,
+          "lon": 26.076
+        }
+      },
+      "feeds": [
+        "viljandimaa"
+      ]
+    },
+    {
+      "id": "voru",
+      "names": {
+        "en": "Võru County",
+        "ru": "Вырумаа",
+        "et": "Võrumaa"
+      },
+      "center": {
+        "lat": 57.834,
+        "lon": 27.019
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 57.563,
+          "lon": 26.473
+        },
+        "northEast": {
+          "lat": 58.101,
+          "lon": 27.631
+        }
+      },
+      "feeds": [
+        "vorumaa"
+      ]
+    },
+    {
+      "id": "polva",
+      "names": {
+        "en": "Põlva County",
+        "ru": "Пылвамаа",
+        "et": "Põlvamaa"
+      },
+      "center": {
+        "lat": 58.06,
+        "lon": 27.07
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 57.78,
+          "lon": 26.562
+        },
+        "northEast": {
+          "lat": 58.395,
+          "lon": 27.709
+        }
+      },
+      "feeds": [
+        "polvamaa"
+      ]
+    },
+    {
+      "id": "valga",
+      "names": {
+        "en": "Valga County",
+        "ru": "Валгамаа",
+        "et": "Valgamaa"
+      },
+      "center": {
+        "lat": 57.777,
+        "lon": 26.047
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 57.586,
+          "lon": 25.133
+        },
+        "northEast": {
+          "lat": 58.389,
+          "lon": 26.871
+        }
+      },
+      "feeds": [
+        "valgamaa"
+      ]
+    },
+    {
+      "id": "jogeva",
+      "names": {
+        "en": "Jõgeva County",
+        "ru": "Йыгевамаа",
+        "et": "Jõgevamaa"
+      },
+      "center": {
+        "lat": 58.746,
+        "lon": 26.394
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.369,
+          "lon": 24.728
+        },
+        "northEast": {
+          "lat": 59.352,
+          "lon": 27.143
+        }
+      },
+      "feeds": [
+        "jogevamaa"
+      ]
+    },
+    {
+      "id": "jarva",
+      "names": {
+        "en": "Järva County",
+        "ru": "Ярвамаа",
+        "et": "Järvamaa"
+      },
+      "center": {
+        "lat": 58.886,
+        "lon": 25.557
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.61,
+          "lon": 25.214
+        },
+        "northEast": {
+          "lat": 59.276,
+          "lon": 26.243
+        }
+      },
+      "feeds": [
+        "jarvamaa"
+      ]
+    },
+    {
+      "id": "rapla",
+      "names": {
+        "en": "Rapla County",
+        "ru": "Рапламаа",
+        "et": "Raplamaa"
+      },
+      "center": {
+        "lat": 59.007,
+        "lon": 24.793
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.706,
+          "lon": 24.165
+        },
+        "northEast": {
+          "lat": 59.422,
+          "lon": 25.222
+        }
+      },
+      "feeds": [
+        "raplamaa"
+      ]
+    },
+    {
+      "id": "saare",
+      "names": {
+        "en": "Saare County",
+        "ru": "Сааремаа",
+        "et": "Saaremaa"
+      },
+      "center": {
+        "lat": 58.253,
+        "lon": 22.485
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 57.946,
+          "lon": 21.948
+        },
+        "northEast": {
+          "lat": 58.651,
+          "lon": 23.323
+        }
+      },
+      "feeds": [
+        "saaremaa"
+      ]
+    },
+    {
+      "id": "hiiu",
+      "names": {
+        "en": "Hiiu County",
+        "ru": "Хийумаа",
+        "et": "Hiiumaa"
+      },
+      "center": {
+        "lat": 58.997,
+        "lon": 22.75
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.668,
+          "lon": 22.091
+        },
+        "northEast": {
+          "lat": 59.038,
+          "lon": 23.081
+        }
+      },
+      "feeds": [
+        "hiiumaa"
+      ]
+    },
+    {
+      "id": "laane",
+      "names": {
+        "en": "Lääne County",
+        "ru": "Ляэнемаа",
+        "et": "Läänemaa"
+      },
+      "center": {
+        "lat": 58.943,
+        "lon": 23.538
+      },
+      "bounds": {
+        "southWest": {
+          "lat": 58.399,
+          "lon": 23.256
+        },
+        "northEast": {
+          "lat": 59.419,
+          "lon": 25.616
+        }
+      },
+      "feeds": [
+        "laanemaa"
+      ]
     }
   ]
 }
