@@ -24,8 +24,31 @@ jobs:
 
           SITE = "https://hophioapp.github.io/config/v1/"
           # Floor per feed: about half of what each had when this was written (Nov 2026).
-          # Fewer trips than this = the source lost half its network. New feeds: only "> 0".
-          MIN_TRIPS = {"tln": 10000, "harju": 6000, "elron": 900}
+          # Fewer trips than this = the source lost half its network. A feed missing here: only "> 0".
+          MIN_TRIPS = {"tln": 10000,
+                       "harju": 6000,
+                       "elron": 900,
+                       "tartu": 2450,
+                       "parnu": 2350,
+                       "narva": 750,
+                       "kohtla_jarve": 700,
+                       "rakvere": 150,
+                       "tartumaa": 1100,
+                       "parnumaa": 2400,
+                       "ida_viru": 1250,
+                       "laane_virumaa": 1550,
+                       "viljandimaa": 1150,
+                       "vorumaa": 1000,
+                       "polvamaa": 1400,
+                       "valgamaa": 500,
+                       "jogevamaa": 650,
+                       "jarvamaa": 550,
+                       "raplamaa": 650,
+                       "saaremaa": 550,
+                       "hiiumaa": 200,
+                       "laanemaa": 450,
+                       "tslaevad": 8400,
+                       "kaugliinid": 1400}
           REQUIRED = ["agency.txt", "stops.txt", "routes.txt", "trips.txt", "stop_times.txt"]
           WARN_DAYS = 5   # timetable ends within this many days
 
