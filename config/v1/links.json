@@ -1,0 +1,13 @@
+{
+  "links": {
+    "tallinnTickets": { "en": "https://transport.tallinn.ee/" },
+    "elron": { "en": "https://elron.ee/" },
+    "elronTickets": { "en": "https://elron.ee/en/piletiinfo/piletid", "et": "https://elron.ee/piletiinfo/piletid" },
+    "tallinnQRTicket": { "en": "https://tallinn.pilet.ee/" },
+    "pilet": { "en": "https://pilet.ee/" },
+    "peatus": { "en": "https://peatus.ee/" },
+    "privacy": { "en": "https://hophioapp.github.io/privacy/" },
+    "terms": { "en": "https://hophioapp.github.io/terms/" },
+    "support": { "en": "https://hophioapp.github.io/support/" }
+  }
+}

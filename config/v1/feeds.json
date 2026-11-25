@@ -1,0 +1,29 @@
+{
+  "feeds": [
+    {
+      "id": "tln",
+      "url": "https://transport.tallinn.ee/data/gtfs.zip",
+      "publisher": "Tallinna Linnavalitsus / Tallinna Linnatranspordi AS",
+      "attribution": "Timetables: Tallinn City Government open data (transport.tallinn.ee)",
+      "cityOperatorNameHints": ["Tallinn", "TLT"],
+      "maxAgeDays": 1,
+      "required": true
+    },
+    {
+      "id": "harju",
+      "url": "https://eu-gtfs.remix.com/harjumaa.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium)",
+      "attribution": "County timetables: Estonian public transport register open data",
+      "maxAgeDays": 7
+    },
+    {
+      "id": "elron",
+      "url": "https://eu-gtfs.remix.com/elron.zip",
+      "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium) · Elron",
+      "attribution": "Train timetables: Estonian public transport register open data",
+      "maxAgeDays": 7,
+      "defaultEnabled": false,
+      "approximateMegabytes": 1.3
+    }
+  ]
+}

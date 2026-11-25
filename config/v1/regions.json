@@ -1,0 +1,11 @@
+{
+  "regions": [
+    {
+      "id": "tallinn",
+      "names": { "en": "Tallinn and Harju County", "ru": "Таллин и Харьюмаа", "et": "Tallinn ja Harjumaa" },
+      "center": { "lat": 59.437, "lon": 24.7536 },
+      "bounds": { "southWest": { "lat": 58.95, "lon": 23.4 }, "northEast": { "lat": 59.75, "lon": 26.1 } },
+      "feeds": ["tln", "harju"]
+    }
+  ]
+}
