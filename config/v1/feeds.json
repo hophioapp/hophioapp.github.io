@@ -184,7 +184,7 @@
       "url": "https://eu-gtfs.remix.com/tslaevad.zip",
       "publisher": "Ühistranspordiregister (Regionaal- ja Põllumajandusministeerium) · TS Laevad",
       "attribution": "Ferry timetables: Estonian public transport register open data",
-      "defaultEnabled": false,
+      "defaultEnabled": true,
       "approximateMegabytes": 0.4,
       "layer": "ferry"
     },

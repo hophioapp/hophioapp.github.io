@@ -1,13 +1,13 @@
 {
   "files" : {
-    "feeds.json" : "25a0946888f0ad70d49f0d7c78a6cd7427b599f401ccff0bdae30d1aa9c28555",
-    "flags.json" : "23b32aa71861a22383ec5465c4f8c6677eba757a3ed28d0fdc3fef686a37beea",
+    "feeds.json" : "8e8d0c60b3c00173201e9b5e1cb9a1d9597b820148987acf2f0af0dfa486c8d1",
+    "flags.json" : "9931a2e8927366795f8fdc0a645d489e0626ae8103b4bee03ed2b1530860ca46",
     "links.json" : "69c92c131015f8fe75c4cd805eecc00c9252e10f17fba18ff5116342d04f049d",
     "notices.json" : "15a407d92c7fcc7dc2460f51e56587f376c011afba7330f267a57ca3da3c2e28",
     "regions.json" : "45795b5a870e01e87f3a81532c3b0d98520b2646f3cfbc796f83737e22223018",
     "texts.json" : "fa2c94c5be3e1582d575bc48a6b9230199b7f3af2a49a5e7300c0d545e2c2493"
   },
   "formatVersion" : 1,
-  "publishedAt" : "2026-11-25T19:10:04Z",
-  "serial" : 7
+  "publishedAt" : "2026-11-26T08:51:12Z",
+  "serial" : 10
 }

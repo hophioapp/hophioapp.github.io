@@ -1,1 +1,1 @@
-{ "off": [] }
+{ "off": [], "pollSeconds": { "stops": 30 } }
