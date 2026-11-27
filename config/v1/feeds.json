@@ -196,6 +196,16 @@
       "defaultEnabled": false,
       "approximateMegabytes": 6.0,
       "layer": "intercity"
+    },
+    {
+      "id": "flix",
+      "url": "https://hophioapp.github.io/feeds/flix-ee.zip",
+      "publisher": "FlixMobility Tech GmbH (FlixBus)",
+      "attribution": "International coaches: FlixBus open timetable (ODbL), trips through Estonia",
+      "maxAgeDays": 7,
+      "defaultEnabled": false,
+      "approximateMegabytes": 0.1,
+      "layer": "intercity"
     }
   ]
 }
