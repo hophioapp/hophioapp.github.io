@@ -135,9 +135,18 @@ def main(src, dst):
         write(zo, "agency.txt", ["agency_id", "agency_name", "agency_url", "agency_timezone", "agency_lang"],
               [[r["agency_id"], "FlixBus" if r["agency_id"].startswith("FLIXBUS") else "FlixTrain",
                 r["agency_url"], ESTONIA_TZ, r.get("agency_lang", "en")] for r in rows(z, "agency.txt")])
+        # "FlixBus N1234" -> "N1234": the line badge holds the number; the carrier is
+        # written beside it (a badge "FlixBus N1234" did not fit, 27.11).
+        def short_name(r):
+            n = r["route_short_name"]
+            for p in ("FlixBus ", "FlixTrain "):
+                if n.startswith(p):
+                    return n[len(p):]
+            return n
+
         write(zo, "routes.txt", ["agency_id", "route_id", "route_short_name", "route_long_name", "route_type",
                                  "route_color", "route_text_color"],
-              [[r["agency_id"], r["route_id"], r["route_short_name"], r["route_long_name"], r["route_type"],
+              [[r["agency_id"], r["route_id"], short_name(r), r["route_long_name"], r["route_type"],
                 r.get("route_color", ""), r.get("route_text_color", "")]
                for r in rows(z, "routes.txt") if r["route_id"] in used_routes])
         write(zo, "stops.txt", ["stop_id", "stop_name", "stop_lat", "stop_lon", "stop_code", "stop_timezone"],
